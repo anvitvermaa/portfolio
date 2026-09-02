@@ -2,41 +2,34 @@
 import React, { useEffect, useRef } from 'react';
 import ResumeButton from '../ResumeButton';
 
-// Splits text into individually animated letter spans
-function AnimatedText({ text, baseDelay = 0, className = '' }) {
-  return (
-    <span className={className} aria-label={text}>
-      {text.split('').map((char, i) => (
-        <span
-          key={i}
-          className="letter-animate"
-          aria-hidden="true"
-          style={{ animationDelay: `${baseDelay + i * 35}ms` }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
-    </span>
-  );
-}
-
 const Hero = () => {
+  const labelRef = useRef(null);
+  const heading1Ref = useRef(null);
+  const heading2Ref = useRef(null);
   const bioRef = useRef(null);
   const btnRef = useRef(null);
-  const labelRef = useRef(null);
 
   useEffect(() => {
-    // Stagger-fade the bio paragraphs and button after headings animate
-    const elements = [labelRef.current, bioRef.current, btnRef.current];
+    // Sleek stagger fade-up animation
+    const elements = [
+      labelRef.current,
+      heading1Ref.current,
+      heading2Ref.current,
+      bioRef.current,
+      btnRef.current
+    ];
+
     elements.forEach((el, i) => {
       if (!el) return;
       el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      el.style.transform = 'translateY(16px)';
+      // Using a smooth easing curve for a "premium" feel
+      el.style.transition = 'opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      
       setTimeout(() => {
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
-      }, 600 + i * 150);
+      }, 100 + i * 120);
     });
   }, []);
 
@@ -44,7 +37,7 @@ const Hero = () => {
     <section id="about" className="flex flex-col justify-center min-h-screen w-full max-w-[1000px] mx-auto px-6 md:px-0 pt-24">
       
       <div className="pt-20 md:pt-0 w-full">
-        {/* Headings — character animated */}
+        {/* Headings */}
         <p
           ref={labelRef}
           className="text-[#ffffff] font-mono text-[14px] md:text-[16px] ml-[2px]"
@@ -53,16 +46,18 @@ const Hero = () => {
           Hi, my name is
         </p>
         <h2
+          ref={heading1Ref}
           className="text-[#efefef] font-bold text-[clamp(40px,6vw,70px)]"
           style={{ margin: 0, padding: 0, lineHeight: 1.1 }}
         >
-          <AnimatedText text="Anvit Verma." baseDelay={200} />
+          Anvit Verma.
         </h2>
         <h3
+          ref={heading2Ref}
           className="text-[#888888] font-bold text-[clamp(40px,6vw,70px)]"
           style={{ margin: 0, padding: 0, lineHeight: 1.1, marginBottom: '20px' }}
         >
-          <AnimatedText text="AI Engineer and Researcher." baseDelay={400} />
+          AI Engineer and Researcher.
         </h3>
 
         {/* Bio + Photo side by side */}

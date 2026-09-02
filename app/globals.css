@@ -66,15 +66,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0);
 }
 
-/* Hero letter clip animation */
-@keyframes letterup {
-  from { clip-path: inset(100% 0 0 0); transform: translateY(20px); opacity: 0; }
-  to   { clip-path: inset(0% 0 0 0);   transform: translateY(0);    opacity: 1; }
-}
-.letter-animate {
-  display: inline-block;
-  animation: letterup 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
 
 /* Shimmer on resume button */
 @keyframes shimmer {
@@ -107,12 +98,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: none;
     transition: none;
   }
-  .letter-animate {
-    animation: none;
-    clip-path: none;
-    opacity: 1;
-    transform: none;
-  }
+
   .shimmer-btn::after { display: none; }
 }
 
