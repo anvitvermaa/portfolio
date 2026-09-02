@@ -87,18 +87,6 @@ const Hero = () => {
                 src="/photo.png" 
                 alt="Anvit Verma" 
                 className="relative w-full h-auto rounded grayscale hover:grayscale-0 transition-all duration-500 object-cover"
-                style={{
-                  outline: '2px solid transparent',
-                  transition: 'grayscale 0.5s ease, outline-color 0.4s ease, outline-offset 0.4s ease',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.outlineColor = 'rgba(255,255,255,0.25)';
-                  e.currentTarget.style.outlineOffset = '6px';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.outlineColor = 'transparent';
-                  e.currentTarget.style.outlineOffset = '0px';
-                }}
               />
             </div>
           </div>
